@@ -1,300 +1,300 @@
 {
-	"$4d": {
-		"version": "1",
-		"kind": "form"
-	},
-	"destination": "detailScreen",
-	"windowSizingX": "fixed",
-	"windowSizingY": "fixed",
-	"rightMargin": 20,
-	"bottomMargin": 20,
-	"events": [
-		"onLoad"
-	],
-	"formClass": "IndexManager",
-	"method": "method.4dm",
-	"pages": [
-		{
-			"objects": {}
-		},
-		{
-			"objects": {
-				"txtTitle": {
-					"type": "text",
-					"top": 12,
-					"left": 20,
-					"width": 500,
-					"height": 24,
-					"stroke": "automatic",
-					"fontFamily": "System Font",
-					"fontSize": 16,
-					"fontWeight": "bold",
-					"text": ":xliff:HDI2_Title"
-				},
-				"lblTable": {
-					"type": "text",
-					"top": 50,
-					"left": 20,
-					"width": 60,
-					"height": 20,
-					"stroke": "automatic",
-					"textAlign": "right",
-					"fontWeight": "bold",
-					"text": ":xliff:HDI2_LabelTable"
-				},
-				"dropTable": {
-					"type": "dropdown",
-					"top": 47,
-					"left": 90,
-					"width": 240,
-					"height": 22,
-					"dataSource": "Form.tableSelector",
-					"dataSourceTypeHint": "object",
-					"method": "ObjectMethods/dropTable.4dm",
-					"events": [
-						"onDataChange"
-					]
-				},
-				"lstIndexes": {
-					"type": "listbox",
-					"top": 82,
-					"left": 20,
-					"width": 440,
-					"height": 260,
-					"dataSource": "Form.indexes",
-					"currentItemSource": "Form.currentIndex",
-					"listboxType": "collection",
-					"resizingMode": "legacy",
-					"events": [
-						"onSelectionChange"
-					],
-					"columns": [
-						{
-							"name": "colName",
-							"dataSource": "This.name",
-							"width": 130,
-							"minWidth": 60,
-							"truncateMode": "none",
-							"header": {
-								"name": "hdrName",
-								"text": ":xliff:HDI2_HeaderName"
-							}
-						},
-						{
-							"name": "colType",
-							"dataSource": "This.typeLabel",
-							"width": 100,
-							"minWidth": 70,
-							"truncateMode": "none",
-							"header": {
-								"name": "hdrType",
-								"text": ":xliff:HDI2_HeaderType"
-							}
-						},
-						{
-							"name": "colKind",
-							"dataSource": "This.kind",
-							"width": 70,
-							"minWidth": 60,
-							"truncateMode": "none",
-							"header": {
-								"name": "hdrKind",
-								"text": ":xliff:HDI2_HeaderKind"
-							}
-						},
-						{
-							"name": "colUnique",
-							"dataSource": "This.uniqueLabel",
-							"width": 55,
-							"minWidth": 45,
-							"truncateMode": "none",
-							"header": {
-								"name": "hdrUnique",
-								"text": ":xliff:HDI2_HeaderUnique"
-							}
-						},
-						{
-							"name": "colAuto",
-							"dataSource": "This.automaticLabel",
-							"width": 70,
-							"minWidth": 60,
-							"truncateMode": "none",
-							"header": {
-								"name": "hdrAuto",
-								"text": ":xliff:HDI2_HeaderAutomatic"
-							}
-						},
-						{
-							"name": "colFields",
-							"dataSource": "This.fieldsLabel",
-							"width": 120,
-							"minWidth": 90,
-							"truncateMode": "none",
-							"header": {
-								"name": "hdrFields",
-								"text": ":xliff:HDI2_HeaderFields"
-							}
-						}
-					]
-				},
-				"btnRefresh": {
-					"type": "button",
-					"top": 352,
-					"left": 20,
-					"width": 110,
-					"height": 26,
-					"text": ":xliff:HDI2_BtnRefresh",
-					"method": "ObjectMethods/btnRefresh.4dm",
-					"events": [
-						"onClick"
-					]
-				},
-				"btnDelete": {
-					"type": "button",
-					"top": 352,
-					"left": 140,
-					"width": 120,
-					"height": 26,
-					"text": ":xliff:HDI2_BtnDelete",
-					"method": "ObjectMethods/btnDelete.4dm",
-					"events": [
-						"onClick"
-					]
-				},
-				"txtStatus": {
-					"type": "input",
-					"top": 356,
-					"left": 280,
-					"width": 420,
-					"height": 20,
-					"dataSource": "Form.status",
-					"focusable": false,
-					"fill": "transparent",
-					"borderStyle": "none",
-					"enterable": false,
-					"dragging": "none",
-					"dropping": "custom",
-					"class": "hdi-muted"
-				},
-				"grpCreate": {
-					"type": "groupBox",
-					"top": 82,
-					"left": 480,
-					"width": 220,
-					"height": 240,
-					"text": ":xliff:HDI2_GroupCreate"
-				},
-				"lblField": {
-					"type": "text",
-					"top": 112,
-					"left": 492,
-					"width": 40,
-					"height": 20,
-					"stroke": "automatic",
-					"textAlign": "right",
-					"text": ":xliff:HDI2_LabelField"
-				},
-				"dropField": {
-					"type": "dropdown",
-					"top": 109,
-					"left": 540,
-					"width": 148,
-					"height": 22,
-					"dataSource": "Form.fieldSelector",
-					"dataSourceTypeHint": "object",
-					"method": "ObjectMethods/dropField.4dm",
-					"events": [
-						"onDataChange"
-					]
-				},
-				"lblType": {
-					"type": "text",
-					"top": 142,
-					"left": 492,
-					"width": 40,
-					"height": 20,
-					"stroke": "automatic",
-					"textAlign": "right",
-					"text": ":xliff:HDI2_LabelType"
-				},
-				"dropType": {
-					"type": "dropdown",
-					"top": 139,
-					"left": 540,
-					"width": 148,
-					"height": 22,
-					"dataSource": "Form.typeSelector",
-					"dataSourceTypeHint": "object"
-				},
-				"lblName": {
-					"type": "text",
-					"top": 172,
-					"left": 492,
-					"width": 40,
-					"height": 20,
-					"stroke": "automatic",
-					"textAlign": "right",
-					"text": ":xliff:HDI2_LabelName"
-				},
-				"inpName": {
-					"type": "input",
-					"top": 169,
-					"left": 540,
-					"width": 148,
-					"height": 22,
-					"dataSource": "Form.indexName",
-					"dataSourceTypeHint": "text"
-				},
-				"chkUnique": {
-					"type": "checkbox",
-					"top": 200,
-					"left": 492,
-					"width": 160,
-					"height": 20,
-					"text": ":xliff:HDI2_CheckUnique",
-					"dataSource": "Form.unique",
-					"dataSourceTypeHint": "boolean"
-				},
-				"btnCreate": {
-					"type": "button",
-					"top": 232,
-					"left": 492,
-					"width": 110,
-					"height": 26,
-					"text": ":xliff:HDI2_BtnCreate",
-					"method": "ObjectMethods/btnCreate.4dm",
-					"events": [
-						"onClick"
-					]
-				},
-				"lblJson": {
-					"type": "text",
-					"top": 390,
-					"left": 20,
-					"width": 300,
-					"height": 20,
-					"stroke": "automatic",
-					"text": ":xliff:HDI2_LabelJson",
-					"class": "hdi-muted"
-				},
-				"inpJson": {
-					"type": "input",
-					"top": 410,
-					"left": 20,
-					"width": 680,
-					"height": 134,
-					"dataSource": "Form.json",
-					"dataSourceTypeHint": "text",
-					"focusable": true,
-					"hideFocusRing": true,
-					"enterable": false,
-					"multiline": "yes",
-					"wordwrap": "normal",
-					"fontFamily": "Menlo",
-					"fontSize": 11,
-					"class": "idx-json"
-				}
-			}
-		}
-	]
+  "$4d": {
+    "version": "1",
+    "kind": "form"
+  },
+  "destination": "detailScreen",
+  "windowSizingX": "fixed",
+  "windowSizingY": "fixed",
+  "rightMargin": 20,
+  "bottomMargin": 20,
+  "events": [
+    "onLoad"
+  ],
+  "formClass": "IndexManager",
+  "method": "method.4dm",
+  "pages": [
+    {
+      "objects": {}
+    },
+    {
+      "objects": {
+        "txtTitle": {
+          "type": "text",
+          "top": 12,
+          "left": 20,
+          "width": 500,
+          "height": 24,
+          "stroke": "automatic",
+          "fontFamily": "System Font",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "text": ":xliff:HDI2_Title"
+        },
+        "lblTable": {
+          "type": "text",
+          "top": 50,
+          "left": 20,
+          "width": 60,
+          "height": 20,
+          "stroke": "automatic",
+          "textAlign": "right",
+          "fontWeight": "bold",
+          "text": ":xliff:HDI2_LabelTable"
+        },
+        "dropTable": {
+          "type": "dropdown",
+          "top": 47,
+          "left": 90,
+          "width": 240,
+          "height": 27,
+          "dataSource": "Form.tableSelector",
+          "dataSourceTypeHint": "object",
+          "method": "ObjectMethods/dropTable.4dm",
+          "events": [
+            "onDataChange"
+          ]
+        },
+        "lstIndexes": {
+          "type": "listbox",
+          "top": 82,
+          "left": 20,
+          "width": 440,
+          "height": 260,
+          "dataSource": "Form.indexes",
+          "currentItemSource": "Form.currentIndex",
+          "listboxType": "collection",
+          "resizingMode": "legacy",
+          "events": [
+            "onSelectionChange"
+          ],
+          "columns": [
+            {
+              "name": "colName",
+              "dataSource": "This.name",
+              "width": 130,
+              "minWidth": 60,
+              "truncateMode": "none",
+              "header": {
+                "name": "hdrName",
+                "text": ":xliff:HDI2_HeaderName"
+              }
+            },
+            {
+              "name": "colType",
+              "dataSource": "This.typeLabel",
+              "width": 100,
+              "minWidth": 70,
+              "truncateMode": "none",
+              "header": {
+                "name": "hdrType",
+                "text": ":xliff:HDI2_HeaderType"
+              }
+            },
+            {
+              "name": "colKind",
+              "dataSource": "This.kind",
+              "width": 70,
+              "minWidth": 60,
+              "truncateMode": "none",
+              "header": {
+                "name": "hdrKind",
+                "text": ":xliff:HDI2_HeaderKind"
+              }
+            },
+            {
+              "name": "colUnique",
+              "dataSource": "This.uniqueLabel",
+              "width": 55,
+              "minWidth": 45,
+              "truncateMode": "none",
+              "header": {
+                "name": "hdrUnique",
+                "text": ":xliff:HDI2_HeaderUnique"
+              }
+            },
+            {
+              "name": "colAuto",
+              "dataSource": "This.automaticLabel",
+              "width": 70,
+              "minWidth": 60,
+              "truncateMode": "none",
+              "header": {
+                "name": "hdrAuto",
+                "text": ":xliff:HDI2_HeaderAutomatic"
+              }
+            },
+            {
+              "name": "colFields",
+              "dataSource": "This.fieldsLabel",
+              "width": 120,
+              "minWidth": 90,
+              "truncateMode": "none",
+              "header": {
+                "name": "hdrFields",
+                "text": ":xliff:HDI2_HeaderFields"
+              }
+            }
+          ]
+        },
+        "btnRefresh": {
+          "type": "button",
+          "top": 352,
+          "left": 20,
+          "width": 110,
+          "text": ":xliff:HDI2_BtnRefresh",
+          "method": "ObjectMethods/btnRefresh.4dm",
+          "events": [
+            "onClick"
+          ],
+          "class": "default"
+        },
+        "btnDelete": {
+          "type": "button",
+          "top": 352,
+          "left": 140,
+          "width": 120,
+          "text": ":xliff:HDI2_BtnDelete",
+          "method": "ObjectMethods/btnDelete.4dm",
+          "events": [
+            "onClick"
+          ],
+          "class": "default"
+        },
+        "txtStatus": {
+          "type": "input",
+          "top": 356,
+          "left": 280,
+          "width": 420,
+          "height": 20,
+          "dataSource": "Form.status",
+          "focusable": false,
+          "fill": "transparent",
+          "borderStyle": "none",
+          "enterable": false,
+          "dragging": "none",
+          "dropping": "custom",
+          "class": "hdi-muted"
+        },
+        "grpCreate": {
+          "type": "groupBox",
+          "top": 82,
+          "left": 480,
+          "width": 220,
+          "height": 240,
+          "text": ":xliff:HDI2_GroupCreate"
+        },
+        "lblField": {
+          "type": "text",
+          "top": 112,
+          "left": 492,
+          "width": 40,
+          "height": 20,
+          "stroke": "automatic",
+          "textAlign": "right",
+          "text": ":xliff:HDI2_LabelField"
+        },
+        "dropField": {
+          "type": "dropdown",
+          "top": 109,
+          "left": 540,
+          "width": 148,
+          "height": 27,
+          "dataSource": "Form.fieldSelector",
+          "dataSourceTypeHint": "object",
+          "method": "ObjectMethods/dropField.4dm",
+          "events": [
+            "onDataChange"
+          ]
+        },
+        "lblType": {
+          "type": "text",
+          "top": 142,
+          "left": 492,
+          "width": 40,
+          "height": 20,
+          "stroke": "automatic",
+          "textAlign": "right",
+          "text": ":xliff:HDI2_LabelType"
+        },
+        "dropType": {
+          "type": "dropdown",
+          "top": 139,
+          "left": 540,
+          "width": 148,
+          "height": 27,
+          "dataSource": "Form.typeSelector",
+          "dataSourceTypeHint": "object"
+        },
+        "lblName": {
+          "type": "text",
+          "top": 172,
+          "left": 492,
+          "width": 40,
+          "height": 20,
+          "stroke": "automatic",
+          "textAlign": "right",
+          "text": ":xliff:HDI2_LabelName"
+        },
+        "inpName": {
+          "type": "input",
+          "top": 169,
+          "left": 540,
+          "width": 148,
+          "height": 22,
+          "dataSource": "Form.indexName",
+          "dataSourceTypeHint": "text"
+        },
+        "chkUnique": {
+          "type": "checkbox",
+          "top": 200,
+          "left": 492,
+          "width": 160,
+          "height": 20,
+          "text": ":xliff:HDI2_CheckUnique",
+          "dataSource": "Form.unique",
+          "dataSourceTypeHint": "boolean"
+        },
+        "btnCreate": {
+          "type": "button",
+          "top": 232,
+          "left": 492,
+          "width": 110,
+          "text": ":xliff:HDI2_BtnCreate",
+          "method": "ObjectMethods/btnCreate.4dm",
+          "events": [
+            "onClick"
+          ],
+          "class": "default"
+        },
+        "lblJson": {
+          "type": "text",
+          "top": 390,
+          "left": 20,
+          "width": 300,
+          "height": 20,
+          "stroke": "automatic",
+          "text": ":xliff:HDI2_LabelJson",
+          "class": "hdi-muted"
+        },
+        "inpJson": {
+          "type": "input",
+          "top": 410,
+          "left": 20,
+          "width": 680,
+          "height": 134,
+          "dataSource": "Form.json",
+          "dataSourceTypeHint": "text",
+          "focusable": true,
+          "hideFocusRing": true,
+          "enterable": false,
+          "multiline": "yes",
+          "wordwrap": "normal",
+          "fontFamily": "Menlo",
+          "fontSize": 11,
+          "class": "idx-json"
+        }
+      }
+    }
+  ]
 }

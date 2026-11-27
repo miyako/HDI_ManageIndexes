@@ -1,0 +1,25 @@
+/* HDI_ManageIndexes -- Windows control heights per form theme.
+   Buttons carry no height in the form JSON; the .default class sizes them
+   here (both selectors: 4D does not always match the compound form).
+   Fluent UI values are NOT verified on Windows yet -- measured on macOS
+   only (see the repository README / PR notes). */
+
+@media (form-theme: fluent-ui) {
+	.default {
+		height: 27px;
+	}
+
+	button.default {
+		height: 27px;
+	}
+}
+
+@media (form-theme: win-classic) {
+	.default {
+		height: 23px;
+	}
+
+	button.default {
+		height: 23px;
+	}
+}
