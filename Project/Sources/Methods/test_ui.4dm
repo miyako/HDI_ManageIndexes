@@ -29,6 +29,11 @@ FORM LOAD("HDI2")
 	
 	  // On Load does not fire for FORM LOAD; the form method calls onLoad()
 	Form.onLoad()
+	  // a previous run that died between create and delete leaves its index
+	  // behind, occupying the one unindexed field; clean up before searching
+DELETE INDEX("ui_test_idx")
+DELETE INDEX("code_idx")
+Form.refresh()
 	$stage:="loaded"
 	$report.stage:=$stage
 	$dataFolder.file("test_ui_report.json").setText(JSON Stringify($report))
@@ -83,6 +88,17 @@ FORM LOAD("HDI2")
 			$t:=Form.tableSelector.values.length
 		End if 
 	End for 
+	
+	If ($free<0)
+		  // every field is indexed (e.g. a leftover test index could not be
+		  // deleted): report it instead of crashing on values[-1]
+		$report.noFreeField:=True
+		$report.ok:=False
+		$dataFolder.file("test_ui_report.json").setText(JSON Stringify($report; *))
+		FORM UNLOAD
+		LOG EVENT(Into system standard outputs; "test_ui: no unindexed field found")
+		return
+	End if 
 	
 	$report.freeFieldIndex:=$free
 	$report.freeFieldName:=Form.fieldSelector.values[$free]

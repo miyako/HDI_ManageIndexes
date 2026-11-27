@@ -103,6 +103,7 @@ Function createIndex()
 		  // CREATE INDEX is a silent no-op when the field already carries an
 		  // equivalent index (no error, no index): verify the round trip
 		var $created : Boolean
+		var $row : Object
 		For each ($row; Form.indexes)
 			If ($row.name=$name)
 				$created:=True

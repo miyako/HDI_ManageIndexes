@@ -9,7 +9,10 @@ ON ERR CALL("dump_on_err"; ek local)
 LOG EVENT(Into system standard outputs; "test_indexes t01 entry")
 
 var $userParam : Text
-Get database parameter(User param value; $userParam)
+var $paramStatus : Integer
+  // Get database parameter is a function: the compiler rejects the bare
+  // procedure form with "This function has been called as a procedure"
+$paramStatus:=Get database parameter(User param value; $userParam)
 
 var $report : Object
 $report:=New object
