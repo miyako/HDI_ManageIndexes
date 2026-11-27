@@ -53,7 +53,7 @@ Case of
 				Form.quit:=True
 				OBJECT SET TITLE(*; "BtnDemo"; Localized string("BtnClose"))
 				
-				$maintext:=Localized string("HDI_ErrorMainText")
+				$maintext:=Localized string("HDI_ErrorMain")
 				$maintext:=Replace string($maintext; "{version}"; $version)
 				OBJECT SET TITLE(*; "ErrorMainText"; $maintext)
 				
