@@ -6,6 +6,7 @@
 		<field name="ID" uuid="F0010001000000000000000000000000" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
 		<field name="companyName" uuid="F0010002000000000000000000000000" type="10" limiting_length="255" id="2"/>
 		<field name="country" uuid="F0010003000000000000000000000000" type="10" limiting_length="30" id="3"/>
+		<field name="code" uuid="F0010004000000000000000000000000" type="10" limiting_length="20" id="4"/>
 		<primary_key field_name="ID" field_uuid="F0010001000000000000000000000000"/>
 	</table>
 	<table name="Persons" uuid="A0020000000000000000000000000000" id="2">

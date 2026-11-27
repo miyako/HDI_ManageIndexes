@@ -14,7 +14,7 @@ If (ds.Companies.getCount()=0)
 	$companies:=New collection
 	
 	For ($i; 1; 12)
-		$companies.push(New object("companyName"; "Company "+String($i); "country"; $countries[(($i-1)%$countries.length)+1]))
+		$companies.push(New object("companyName"; "Company "+String($i); "country"; $countries[($i-1)%$countries.length]; "code"; "CMP-"+String(1000+$i)))
 	End for 
 	
 	ds.Companies.fromCollection($companies)
@@ -34,7 +34,7 @@ If (ds.Persons.getCount()=0)
 	$persons:=New collection
 	
 	For ($i; 1; 120)
-		$persons.push(New object("firstName"; $firstNames[(($i-1)%$firstNames.length)+1]; "lastName"; $lastNames[(($i-1)%$lastNames.length)+1]; "email"; "user"+String($i)+"@example.com"; "companyID"; ((($i-1)%12)+1); "notes"; Substring("Followed up on the maintenance contract for site "+String($i)+"."; 1; 50)))
+		$persons.push(New object("firstName"; $firstNames[($i-1)%$firstNames.length]; "lastName"; $lastNames[($i-1)%$lastNames.length]; "email"; "user"+String($i)+"@example.com"; "companyID"; ((($i-1)%12)+1); "notes"; Substring("Followed up on the maintenance contract for site "+String($i)+"."; 1; 50)))
 	End for 
 	
 	ds.Persons.fromCollection($persons)

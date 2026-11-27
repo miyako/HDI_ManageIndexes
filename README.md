@@ -94,6 +94,17 @@ folder is shipped.
 
   A relative output path resolves against the database folder (the repository root).
 
+- `test_ui.4dm` verifies the demo form wiring headlessly: it loads
+  `HDI2` with `FORM LOAD`, drives the same functions the widgets call
+  (drop-down selection, `refresh()`, `createIndex()`, row selection via
+  `Form.currentIndex`, `deleteIndex()`) and asserts on `Form` state and
+  the live catalog. Run it with the same flags and
+  `--startup-method test_ui`; the report is `test_ui_report.json`.
+
+  The create step targets `Companies.code`, the one field that carries
+  no index: `CREATE INDEX` silently ignores a field that already has an
+  equivalent index, so the demo keeps one unindexed field to build on.
+
 ## Points of interest
 
 - **`getIndexes()` output shape.** Every index object carries `UUID`,

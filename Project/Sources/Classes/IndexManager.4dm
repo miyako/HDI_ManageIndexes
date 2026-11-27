@@ -32,16 +32,16 @@ Function onLoad()
 Function loadFields()
 	
 	Form.fieldSelector:=New object
-	Form.fieldSelector.values:=This.listFields(Form.tableSelector.currentValue)
+	Form.fieldSelector.values:=This.listFields(This.selectedValue(Form.tableSelector))
 	Form.fieldSelector.index:=0
 	Form.fieldSelector.currentValue:=Form.fieldSelector.values[0]
-	Form.indexName:=Form.fieldSelector.currentValue+"_idx"
+	Form.indexName:=Form.fieldSelector.values[0]+"_idx"
 	
 
 Function refresh()
 	
 	var $tableName : Text
-	$tableName:=Form.tableSelector.currentValue
+	$tableName:=This.selectedValue(Form.tableSelector)
 	
 	var $indexes : Collection
 	$indexes:=ds[$tableName].getIndexes()
@@ -62,8 +62,8 @@ Function refresh()
 Function createIndex()
 	
 	var $tableName; $fieldName : Text
-	$tableName:=Form.tableSelector.currentValue
-	$fieldName:=Form.fieldSelector.currentValue
+	$tableName:=This.selectedValue(Form.tableSelector)
+	$fieldName:=This.selectedValue(Form.fieldSelector)
 	
 	var $name : Text
 	$name:=Form.indexName
@@ -72,9 +72,11 @@ Function createIndex()
 	End if 
 	
 	var $type : Integer
-	$type:=This.typeCode(Form.typeSelector.currentValue)
+	$type:=This.typeCode(This.selectedValue(Form.typeSelector))
 	
-	Storage.demoError:=Null
+	Use (Storage)
+		Storage.demoError:=Null
+	End use
 	ON ERR CALL("ErrorTrap"; ek local)
 	
 	  // CREATE INDEX requires a syntactic table reference (aTable : Table):
@@ -92,13 +94,28 @@ Function createIndex()
 	
 	ON ERR CALL(""; ek local)
 	
-	If (Storage.demoError=Null)
-		Form.status:="CREATE INDEX "+$name+" (type "+String($type)+") -- done"
-	Else 
-		Form.status:="CREATE INDEX failed: "+String(Storage.demoError.errorCode)+" "+Storage.demoError.message
-	End if 
-	
+	  // refresh first: it resets the status line, then report the outcome
 	This.refresh()
+	
+	If (Storage.demoError#Null)
+		Form.status:="CREATE INDEX failed: "+String(Storage.demoError.errorCode)+" "+Storage.demoError.message
+	Else 
+		  // CREATE INDEX is a silent no-op when the field already carries an
+		  // equivalent index (no error, no index): verify the round trip
+		var $created : Boolean
+		For each ($row; Form.indexes)
+			If ($row.name=$name)
+				$created:=True
+			End if 
+		End for each 
+		
+		If ($created)
+			Form.status:="CREATE INDEX "+$name+" (type "+String($type)+") -- done"
+		Else 
+			Form.status:="No new index: "+$fieldName+" already carries an equivalent index."
+		End if 
+		
+	End if 
 	
 
 Function deleteIndex()
@@ -111,13 +128,17 @@ Function deleteIndex()
 		return 
 	End if 
 	
-	Storage.demoError:=Null
+	Use (Storage)
+		Storage.demoError:=Null
+	End use
 	ON ERR CALL("ErrorTrap"; ek local)
+	
+	var $done : Text
 	
 	If ($selected.named)
 		
 		DELETE INDEX($selected.name)
-		Form.status:="DELETE INDEX(\""+$selected.name+"\") -- done"
+		$done:="DELETE INDEX(\""+$selected.name+"\") -- done"
 		
 	Else 
 		
@@ -128,20 +149,24 @@ Function deleteIndex()
 		
 		If ($fieldPtr#Null)
 			DELETE INDEX($fieldPtr)
-			Form.status:="DELETE INDEX(field pointer) -- unnamed index removed"
+			$done:="DELETE INDEX(field pointer) -- unnamed index removed"
 		Else 
-			Form.status:="Cannot resolve the field of this index."
+			$done:="Cannot resolve the field of this index."
 		End if 
 		
 	End if 
 	
 	ON ERR CALL(""; ek local)
 	
+	  // refresh first: it resets the status line, then report the outcome
+	This.refresh()
+	
 	If (Storage.demoError#Null)
 		Form.status:="DELETE INDEX failed: "+String(Storage.demoError.errorCode)+" "+Storage.demoError.message
+	Else 
+		Form.status:=$done
 	End if 
 	
-	This.refresh()
 	
 
 // private
@@ -194,7 +219,7 @@ Function listFields($tableName : Text) : Collection
 Function fieldNumber($fieldName : Text) : Integer
 	
 	var $tableNum; $lastField; $i : Integer
-	$tableNum:=This.tableNumber(Form.tableSelector.currentValue)
+	$tableNum:=This.tableNumber(This.selectedValue(Form.tableSelector))
 	$lastField:=Last field number($tableNum)
 	
 	For ($i; 1; $lastField)
@@ -215,7 +240,7 @@ Function fieldPointer($fieldName : Text) : Pointer
 		return Null
 	End if 
 	
-	return Field(This.tableNumber(Form.tableSelector.currentValue); $fieldNum)
+	return Field(This.tableNumber(This.selectedValue(Form.tableSelector)); $fieldNum)
 	
 
 Function typeLabel($type : Integer) : Text
@@ -275,6 +300,24 @@ Function attributesLabel($attributes : Collection) : Text
 	End for each 
 	
 	return $labels.join(", ")
+	
+
+Function selectedValue($selector : Object) -> $value : Text
+	
+	  // object-bound drop-down: index is the source of truth; currentValue is
+	  // display text and can still hold the initial placeholder on some builds
+	
+	If ($selector=Null)
+		$value:=""
+	Else 
+		
+		If ($selector.index>=0)
+			$value:=$selector.values[$selector.index]
+		Else 
+			$value:=$selector.currentValue
+		End if 
+		
+	End if 
 	
 
 Function refLiteral($identifier : Text) : Text

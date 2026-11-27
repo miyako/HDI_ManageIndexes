@@ -4,5 +4,7 @@ var $errors : Collection
 $errors:=Last errors
 
 If ($errors.length>0)
-	Storage.demoError:=$errors[0]
+	Use (Storage)
+		Storage.demoError:=$errors[0]
+	End use
 End if 
