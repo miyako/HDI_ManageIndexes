@@ -1,0 +1,1 @@
+OPEN URL(Form.blog)

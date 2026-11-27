@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file datatype="plaintext" original="Project/Sources/Forms/HDI2/form.4DForm" source-language="en" target-language="en">
+		<body>
+			<trans-unit id="HDI2_Title" resname="HDI2_Title">
+				<source>Index manager — DataClass.getIndexes()</source>
+				<target>Index manager — DataClass.getIndexes()</target>
+			</trans-unit>
+			<trans-unit id="HDI2_LabelTable" resname="HDI2_LabelTable">
+				<source>Table:</source>
+				<target>Table:</target>
+			</trans-unit>
+			<trans-unit id="HDI2_HeaderName" resname="HDI2_HeaderName">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="HDI2_HeaderType" resname="HDI2_HeaderType">
+				<source>Type</source>
+				<target>Type</target>
+			</trans-unit>
+			<trans-unit id="HDI2_HeaderKind" resname="HDI2_HeaderKind">
+				<source>Kind</source>
+				<target>Kind</target>
+			</trans-unit>
+			<trans-unit id="HDI2_HeaderUnique" resname="HDI2_HeaderUnique">
+				<source>Unique</source>
+				<target>Unique</target>
+			</trans-unit>
+			<trans-unit id="HDI2_HeaderAutomatic" resname="HDI2_HeaderAutomatic">
+				<source>Automatic</source>
+				<target>Automatic</target>
+			</trans-unit>
+			<trans-unit id="HDI2_HeaderFields" resname="HDI2_HeaderFields">
+				<source>Fields</source>
+				<target>Fields</target>
+			</trans-unit>
+			<trans-unit id="HDI2_BtnRefresh" resname="HDI2_BtnRefresh">
+				<source>Refresh</source>
+				<target>Refresh</target>
+			</trans-unit>
+			<trans-unit id="HDI2_BtnDelete" resname="HDI2_BtnDelete">
+				<source>Delete index</source>
+				<target>Delete index</target>
+			</trans-unit>
+			<trans-unit id="HDI2_GroupCreate" resname="HDI2_GroupCreate">
+				<source>Create index</source>
+				<target>Create index</target>
+			</trans-unit>
+			<trans-unit id="HDI2_LabelField" resname="HDI2_LabelField">
+				<source>Field:</source>
+				<target>Field:</target>
+			</trans-unit>
+			<trans-unit id="HDI2_LabelType" resname="HDI2_LabelType">
+				<source>Type:</source>
+				<target>Type:</target>
+			</trans-unit>
+			<trans-unit id="HDI2_LabelName" resname="HDI2_LabelName">
+				<source>Name:</source>
+				<target>Name:</target>
+			</trans-unit>
+			<trans-unit id="HDI2_CheckUnique" resname="HDI2_CheckUnique">
+				<source>Unique key</source>
+				<target>Unique key</target>
+			</trans-unit>
+			<trans-unit id="HDI2_BtnCreate" resname="HDI2_BtnCreate">
+				<source>Create</source>
+				<target>Create</target>
+			</trans-unit>
+			<trans-unit id="HDI2_LabelJson" resname="HDI2_LabelJson">
+				<source>Raw getIndexes() JSON</source>
+				<target>Raw getIndexes() JSON</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

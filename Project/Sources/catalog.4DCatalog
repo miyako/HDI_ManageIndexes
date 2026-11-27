@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="HDI_ManageIndexes" uuid="B0000000000000000000000000000001" collation_locale="en">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="Companies" uuid="A0010000000000000000000000000000" id="1">
+		<field name="ID" uuid="F0010001000000000000000000000000" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="companyName" uuid="F0010002000000000000000000000000" type="10" limiting_length="255" id="2"/>
+		<field name="country" uuid="F0010003000000000000000000000000" type="10" limiting_length="30" id="3"/>
+		<primary_key field_name="ID" field_uuid="F0010001000000000000000000000000"/>
+	</table>
+	<table name="Persons" uuid="A0020000000000000000000000000000" id="2">
+		<field name="ID" uuid="F0020001000000000000000000000000" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="firstName" uuid="F0020002000000000000000000000000" type="10" limiting_length="80" id="2"/>
+		<field name="lastName" uuid="F0020003000000000000000000000000" type="10" limiting_length="80" id="3"/>
+		<field name="email" uuid="F0020004000000000000000000000000" type="10" limiting_length="255" id="4"/>
+		<field name="companyID" uuid="F0020005000000000000000000000000" type="4" id="5"/>
+		<field name="notes" uuid="F0020006000000000000000000000000" type="14" id="6"/>
+		<primary_key field_name="ID" field_uuid="F0020001000000000000000000000000"/>
+	</table>
+	<table name="Documents" uuid="A0030000000000000000000000000000" id="3">
+		<field name="ID" uuid="F0030001000000000000000000000000" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="title" uuid="F0030002000000000000000000000000" type="10" limiting_length="255" id="2"/>
+		<field name="content" uuid="F0030003000000000000000000000000" type="14" id="3"/>
+		<field name="embedding" uuid="F0030004000000000000000000000000" type="21" blob_switch_size="2147483647" id="4">
+			<field_extra class_id="4D.Vector"/>
+		</field>
+		<primary_key field_name="ID" field_uuid="F0030001000000000000000000000000"/>
+	</table>
+	<relation uuid="D0010000000000000000000000000000" name_Nto1="employer" name_1toN="employees" state="1" integrity="reject">
+		<related_field kind="source">
+			<field_ref uuid="F0020005000000000000000000000000" name="companyID">
+				<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="F0010001000000000000000000000000" name="ID">
+				<table_ref uuid="A0010000000000000000000000000000" name="Companies"/>
+			</field_ref>
+		</related_field>
+	</relation>
+	<index kind="regular" unique_keys="true" uuid="C0010001000000000000000000000000" type="7">
+		<field_ref uuid="F0010001000000000000000000000000" name="ID">
+			<table_ref uuid="A0010000000000000000000000000000" name="Companies"/>
+		</field_ref>
+	</index>
+	<index kind="regular" name="Companies_companyName" uuid="C0010002000000000000000000000000" type="1">
+		<field_ref uuid="F0010002000000000000000000000000" name="companyName">
+			<table_ref uuid="A0010000000000000000000000000000" name="Companies"/>
+		</field_ref>
+	</index>
+	<index kind="regular" name="Companies_country_cluster" uuid="C0010003000000000000000000000000" type="3">
+		<field_ref uuid="F0010003000000000000000000000000" name="country">
+			<table_ref uuid="A0010000000000000000000000000000" name="Companies"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="C0020001000000000000000000000000" type="7">
+		<field_ref uuid="F0020001000000000000000000000000" name="ID">
+			<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" name="Persons_email_unique" uuid="C0020002000000000000000000000000" type="1">
+		<field_ref uuid="F0020004000000000000000000000000" name="email">
+			<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+		</field_ref>
+	</index>
+	<index kind="regular" name="Persons_lastName_firstName" uuid="C0020003000000000000000000000000" type="1">
+		<field_ref uuid="F0020003000000000000000000000000" name="lastName">
+			<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+		</field_ref>
+		<field_ref uuid="F0020002000000000000000000000000" name="firstName">
+			<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+		</field_ref>
+	</index>
+	<index kind="regular" name="Persons_companyID_cluster" uuid="C0020004000000000000000000000000" type="3">
+		<field_ref uuid="F0020005000000000000000000000000" name="companyID">
+			<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+		</field_ref>
+	</index>
+	<index kind="keywords" name="Persons_notes_keywords" uuid="C0020005000000000000000000000000" type="7">
+		<field_ref uuid="F0020006000000000000000000000000" name="notes">
+			<table_ref uuid="A0020000000000000000000000000000" name="Persons"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="C0030001000000000000000000000000" type="7">
+		<field_ref uuid="F0030001000000000000000000000000" name="ID">
+			<table_ref uuid="A0030000000000000000000000000000" name="Documents"/>
+		</field_ref>
+	</index>
+	<index kind="regular" name="Documents_title" uuid="C0030002000000000000000000000000" type="1">
+		<field_ref uuid="F0030002000000000000000000000000" name="title">
+			<table_ref uuid="A0030000000000000000000000000000" name="Documents"/>
+		</field_ref>
+	</index>
+	<index kind="keywords" name="Documents_content_keywords" uuid="C0030003000000000000000000000000" type="7">
+		<field_ref uuid="F0030003000000000000000000000000" name="content">
+			<table_ref uuid="A0030000000000000000000000000000" name="Documents"/>
+		</field_ref>
+	</index>
+	<index kind="regular" name="Documents_embedding_cosine" uuid="C0030004000000000000000000000000" type="20">
+		<field_ref uuid="F0030004000000000000000000000000" name="embedding">
+			<table_ref uuid="A0030000000000000000000000000000" name="Documents"/>
+		</field_ref>
+	</index>
+	<base_extra>
+		<journal_file journal_file_enabled="false"/>
+	</base_extra>
+</base>

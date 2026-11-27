@@ -1,0 +1,51 @@
+/* panel behind the splash picture */
+@media (prefers-color-scheme: light) {
+	.hdi-panel {
+		fill: #C0C0C0;
+	}
+
+	.hdi-muted {
+		stroke: #696969;
+	}
+
+	.hdi-link {
+		stroke: #1E90FF;
+	}
+
+	.hdi-error {
+		stroke: #212121;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.hdi-panel {
+		fill: #3A3A3A;
+	}
+
+	.hdi-muted {
+		stroke: #A0A0A0;
+	}
+
+	.hdi-link {
+		stroke: #5CB8FF;
+	}
+
+	.hdi-error {
+		stroke: #212121;
+	}
+}
+
+/* demo form */
+@media (prefers-color-scheme: light) {
+	.idx-json {
+		fill: #F4F4F4;
+		stroke: #404040;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.idx-json {
+		fill: #2A2A2A;
+		stroke: #C8C8C8;
+	}
+}
