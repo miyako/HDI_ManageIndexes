@@ -1,4 +1,4 @@
-![version](https://img.shields.io/badge/version-21%20R5-E23089)
+![version](https://img.shields.io/badge/version-21%20R5-3B69E9)
 ![platform](https://img.shields.io/static/v1?label=platform&message=mac-arm%20|%20mac-intel%20|%20win-64&color=blue)
 
 # HDI_ManageIndexes
